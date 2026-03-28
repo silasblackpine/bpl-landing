@@ -45,10 +45,10 @@ export default function BootSequence({ ready }) {
           style={{ background: '#080A0C' }}
         >
           <span
-            className="font-mono text-sm tracking-widest"
+            className="font-mono text-xs md:text-sm tracking-widest text-center px-6"
             style={{ color: '#6A6A62' }}
           >
-            // BLACK PINE LAB : INITIALIZING INFRASTRUCTURE...
+            // BLACK PINE LAB :<br className="md:hidden" /> INITIALIZING INFRASTRUCTURE...
           </span>
         </motion.div>
       )}
