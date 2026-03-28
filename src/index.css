@@ -1,0 +1,126 @@
+/* index.css — BLACK PINE LAB
+ * Governing spec: /home/nodeuser/documents/2026-03-28-bpl-landing-page-design.md
+ */
+
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Base Reset ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+html, body {
+  background-color: #080A0C;
+}
+
+body {
+  color: #E8E0D0;
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== Font Utilities ===== */
+.font-display {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.font-sans {
+  font-family: 'Geist', system-ui, sans-serif;
+}
+
+/* ===== Color Utilities ===== */
+.text-primary { color: #E8E0D0; }
+.text-secondary { color: #6A6A62; }
+.text-headline { color: #F0E8D8; }
+.text-amber { color: #C9A84C; }
+.text-arctic { color: #4A90B8; }
+
+/* ===== Screen Reader Only ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ===== Amber Pulse Animation ===== */
+@keyframes pulse-amber {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ===== Ticker Scroll ===== */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== iOS Tap Highlight Kill ===== */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== Focus Styles ===== */
+:focus-visible {
+  outline: 1px solid #C9A84C;
+  outline-offset: 2px;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(201, 168, 76, 0.2);
+  color: #F0E8D8;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Scrollbar (subtle) ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080A0C;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A2E35;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3A3E45;
+}
