@@ -6,7 +6,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { lineShaders } from './shaders'
 
-export default function GridLines({ uniformsRef, isMobile, lineData }) {
+export default function GridLines({ uniformsRef, lineData }) {
   const linesRef = useRef()
 
   const { geometry, material } = useMemo(() => {
@@ -32,7 +32,7 @@ export default function GridLines({ uniformsRef, isMobile, lineData }) {
     })
 
     return { geometry: geo, material: mat }
-  }, [lineData, isMobile])
+  }, [lineData])
 
   useFrame((state) => {
     if (!linesRef.current) return

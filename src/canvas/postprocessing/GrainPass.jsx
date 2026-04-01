@@ -36,7 +36,7 @@ class GrainEffect extends Effect {
 }
 
 const GrainPass = forwardRef(function GrainPass({ strength = 0.03 }, ref) {
-  const effect = useMemo(() => new GrainEffect({ strength }), [])
+  const effect = useMemo(() => new GrainEffect({ strength }), [strength])
   return <primitive ref={ref} object={effect} />
 })
 

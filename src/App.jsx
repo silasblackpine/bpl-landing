@@ -13,7 +13,6 @@ import CompanionSection from './sections/CompanionSection'
 import SaisSection from './sections/SaisSection'
 import Footer from './sections/Footer'
 import useScrollTimeline from './scroll/useScrollTimeline'
-import useFPSMonitor from './hooks/useFPSMonitor'
 import useAudio from './hooks/useAudio'
 
 export default function App() {
@@ -34,7 +33,6 @@ export default function App() {
   })
 
   const audio = useAudio()
-  const perfTier = useFPSMonitor()
 
   // Initialize scroll timeline (Lenis + GSAP)
   useScrollTimeline(uniformsRef, audio)
@@ -50,7 +48,6 @@ export default function App() {
       <ParticleCanvas
         uniformsRef={uniformsRef}
         onFirstFrame={handleFirstFrame}
-        perfTier={perfTier}
       />
 
       <Nav

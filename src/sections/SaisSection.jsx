@@ -1,7 +1,7 @@
 // SaisSection.jsx — Secure Algorithmic Infrastructure as a Service
 // Governing spec: /home/nodeuser/documents/2026-03-28-bpl-landing-page-design.md
 
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 import GlassPanel from '../components/GlassPanel'
 
 const FEATURES = [
@@ -30,7 +30,7 @@ export default function SaisSection({ onApply }) {
       aria-label="Elite SAIS — Secure Algorithmic Infrastructure as a Service"
     >
       <div className="max-w-5xl w-full text-center">
-        <motion.h2
+        <Motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-20%' }}
@@ -39,9 +39,9 @@ export default function SaisSection({ onApply }) {
           style={{ color: '#F0E8D8' }}
         >
           ELITE SAIS
-        </motion.h2>
+        </Motion.h2>
 
-        <motion.p
+        <Motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -50,12 +50,12 @@ export default function SaisSection({ onApply }) {
           style={{ color: '#E8E0D0' }}
         >
           Secure Algorithmic Infrastructure. As a Service.
-        </motion.p>
+        </Motion.p>
 
         {/* Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {FEATURES.map((feature, i) => (
-            <motion.div
+            <Motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -82,11 +82,11 @@ export default function SaisSection({ onApply }) {
                   {feature.description}
                 </p>
               </GlassPanel>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
 
-        <motion.p
+        <Motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -97,9 +97,9 @@ export default function SaisSection({ onApply }) {
           Built for funds. Priced for the serious.
           <br />
           <span style={{ color: '#E8E0D0' }}>Not for everyone — by design.</span>
-        </motion.p>
+        </Motion.p>
 
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -116,7 +116,7 @@ export default function SaisSection({ onApply }) {
           >
             APPLY FOR ACCESS
           </button>
-        </motion.div>
+        </Motion.div>
       </div>
     </section>
   )

@@ -3,7 +3,6 @@
 
 import { forwardRef, useMemo } from 'react'
 import { Effect } from 'postprocessing'
-import { ditherShader } from '../shaders'
 
 const ditherFragmentShader = `
 precision mediump float;
@@ -53,7 +52,7 @@ class DitherEffect extends Effect {
 }
 
 const DitherPass = forwardRef(function DitherPass({ intensity = 0.3 }, ref) {
-  const effect = useMemo(() => new DitherEffect({ intensity }), [])
+  const effect = useMemo(() => new DitherEffect({ intensity }), [intensity])
   return <primitive ref={ref} object={effect} />
 })
 

@@ -3,23 +3,22 @@
 // Fades after: first R3F frame AND minimum 1.5s elapsed
 // Failsafe: auto-dismisses after 4s even if canvas fails
 
-import { useState, useEffect, useRef } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { AnimatePresence, motion as Motion } from 'framer-motion'
 
 export default function BootSequence({ ready }) {
-  const [visible, setVisible] = useState(true)
-  const minTimeRef = useRef(false)
+  const [minElapsed, setMinElapsed] = useState(false)
+  const [failsafeElapsed, setFailsafeElapsed] = useState(false)
 
   useEffect(() => {
     // Minimum display time
     const minTimer = setTimeout(() => {
-      minTimeRef.current = true
-      if (ready) setVisible(false)
+      setMinElapsed(true)
     }, 1500)
 
     // Failsafe: dismiss after 4s regardless
     const failsafe = setTimeout(() => {
-      setVisible(false)
+      setFailsafeElapsed(true)
     }, 4000)
 
     return () => {
@@ -28,16 +27,12 @@ export default function BootSequence({ ready }) {
     }
   }, [])
 
-  useEffect(() => {
-    if (ready && minTimeRef.current) {
-      setVisible(false)
-    }
-  }, [ready])
+  const visible = !failsafeElapsed && !(ready && minElapsed)
 
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div
+        <Motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -50,7 +45,7 @@ export default function BootSequence({ ready }) {
           >
             // BLACK PINE LAB :<br className="md:hidden" /> INITIALIZING INFRASTRUCTURE...
           </span>
-        </motion.div>
+        </Motion.div>
       )}
     </AnimatePresence>
   )

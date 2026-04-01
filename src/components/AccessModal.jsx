@@ -2,8 +2,8 @@
 // Governing spec: /home/nodeuser/documents/2026-03-28-bpl-landing-page-design.md
 // No backend. Mock form → success state.
 
-import { useState, useRef, useEffect } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { AnimatePresence, motion as Motion } from 'framer-motion'
 
 export default function AccessModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false)
@@ -11,18 +11,22 @@ export default function AccessModal({ isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      setSubmitted(false)
       setTimeout(() => inputRef.current?.focus(), 100)
     }
   }, [isOpen])
 
+  const handleClose = useCallback(() => {
+    setSubmitted(false)
+    onClose()
+  }, [onClose])
+
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape') handleClose()
     }
     if (isOpen) window.addEventListener('keydown', handleEscape)
     return () => window.removeEventListener('keydown', handleEscape)
-  }, [isOpen, onClose])
+  }, [isOpen, handleClose])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -32,7 +36,7 @@ export default function AccessModal({ isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -40,13 +44,13 @@ export default function AccessModal({ isOpen, onClose }) {
           className="fixed inset-0 z-[80] flex items-center justify-center"
           style={{ background: 'rgba(8, 10, 12, 0.85)' }}
           onClick={(e) => {
-            if (e.target === e.currentTarget && window.innerWidth >= 768) onClose()
+            if (e.target === e.currentTarget && window.innerWidth >= 768) handleClose()
           }}
           role="dialog"
           aria-modal="true"
           aria-label="Request Access"
         >
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
@@ -61,7 +65,7 @@ export default function AccessModal({ isOpen, onClose }) {
           >
             {/* Close button */}
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="absolute top-4 right-4 font-mono text-xs hover:opacity-100 transition-opacity"
               style={{ color: '#6A6A62', opacity: 0.6 }}
               aria-label="Close modal"
@@ -124,8 +128,8 @@ export default function AccessModal({ isOpen, onClose }) {
                 </p>
               </div>
             )}
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
       )}
     </AnimatePresence>
   )

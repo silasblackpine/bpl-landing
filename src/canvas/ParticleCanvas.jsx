@@ -33,6 +33,7 @@ function CameraController({ uniformsRef }) {
   const { camera } = useThree()
   useFrame(() => {
     const targetZ = uniformsRef.current.uCameraZ
+    // eslint-disable-next-line react-hooks/immutability -- R3F camera updates are per-frame imperative mutations.
     camera.position.z += (targetZ - camera.position.z) * 0.05
   })
   return null
@@ -58,13 +59,13 @@ function Scene({ uniformsRef, isMobile, onFirstFrame }) {
     <>
       <CameraController uniformsRef={uniformsRef} />
       <ParticleField uniformsRef={uniformsRef} isMobile={isMobile} gridData={grid} />
-      <GridLines uniformsRef={uniformsRef} isMobile={isMobile} lineData={lines} />
+      <GridLines uniformsRef={uniformsRef} lineData={lines} />
       <FirstFrameNotifier onFirstFrame={onFirstFrame} />
     </>
   )
 }
 
-export default function ParticleCanvas({ uniformsRef, onFirstFrame, perfTier }) {
+export default function ParticleCanvas({ uniformsRef, onFirstFrame }) {
   const [isMobile] = useState(() => window.innerWidth < 768)
 
   const handleCreated = ({ gl, scene }) => {

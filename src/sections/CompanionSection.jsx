@@ -1,7 +1,7 @@
 // CompanionSection.jsx — Your AI Strategic Mentor
 // Governing spec: /home/nodeuser/documents/2026-03-28-bpl-landing-page-design.md
 
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 import GlassPanel from '../components/GlassPanel'
 
 const MESSAGES = [
@@ -30,7 +30,7 @@ export default function CompanionSection() {
       aria-label="Companion — AI Strategic Mentor"
     >
       <div className="max-w-2xl w-full text-center">
-        <motion.h2
+        <Motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-20%' }}
@@ -39,9 +39,9 @@ export default function CompanionSection() {
           style={{ color: '#F0E8D8' }}
         >
           You Don&apos;t Trade Alone.
-        </motion.h2>
+        </Motion.h2>
 
-        <motion.p
+        <Motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -51,13 +51,13 @@ export default function CompanionSection() {
         >
           <span style={{ color: '#C9A84C' }}>COMPANION</span> — Your AI Strategic Mentor.
           In-Session. In Real Time.
-        </motion.p>
+        </Motion.p>
 
         {/* Chat Interface */}
         <GlassPanel className="text-left">
           <div className="space-y-4">
             {MESSAGES.map((msg, i) => (
-              <motion.div
+              <Motion.div
                 key={i}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -84,12 +84,12 @@ export default function CompanionSection() {
                     {msg.text}
                   </p>
                 </div>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </GlassPanel>
 
-        <motion.p
+        <Motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -98,7 +98,7 @@ export default function CompanionSection() {
           style={{ color: '#6A6A62' }}
         >
           Available for Futures // Crypto // Equities
-        </motion.p>
+        </Motion.p>
       </div>
     </section>
   )

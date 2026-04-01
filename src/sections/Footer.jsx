@@ -1,7 +1,7 @@
 // Footer.jsx — Minimal footer
 // Governing spec: /home/nodeuser/documents/2026-03-28-bpl-landing-page-design.md
 
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 
 export default function Footer() {
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
         paddingBottom: 'calc(3rem + env(safe-area-inset-bottom))',
       }}
     >
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -30,7 +30,7 @@ export default function Footer() {
         >
           // BLACK PINE LAB LLC — ALGORITHMIC SYSTEMS — ALL STRATEGIES INVOLVE RISK — NOT FINANCIAL ADVICE
         </p>
-      </motion.div>
+      </Motion.div>
     </footer>
   )
 }
