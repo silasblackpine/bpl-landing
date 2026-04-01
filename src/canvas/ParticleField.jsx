@@ -10,7 +10,7 @@ export default function ParticleField({ uniformsRef, isMobile, gridData }) {
   const meshRef = useRef()
 
   const { geometry, material } = useMemo(() => {
-    const { gridPos, offsets, phases, count } = gridData
+    const { gridPos, offsets, phases } = gridData
 
     const geo = new THREE.BufferGeometry()
     geo.setAttribute('position', new THREE.BufferAttribute(gridPos, 3))

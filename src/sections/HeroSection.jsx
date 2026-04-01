@@ -2,7 +2,7 @@
 // Governing spec: /home/nodeuser/documents/2026-03-28-bpl-landing-page-design.md
 
 import { useRef, useCallback } from 'react'
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 import GlassPanel from '../components/GlassPanel'
 import AmberPulse from '../components/AmberPulse'
 import DataTicker from '../components/DataTicker'
@@ -46,7 +46,7 @@ export default function HeroSection({ onExplore, onTerminal }) {
       <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-[6%] w-full max-w-7xl mx-auto pt-14">
         {/* Left: Editorial */}
         <div className="w-full lg:w-[58%]">
-          <motion.p
+          <Motion.p
             custom={0}
             initial="hidden"
             animate="visible"
@@ -55,9 +55,9 @@ export default function HeroSection({ onExplore, onTerminal }) {
             style={{ color: '#6A6A62' }}
           >
             // BLACK PINE LAB — AUTONOMOUS QUANTITATIVE SYSTEMS
-          </motion.p>
+          </Motion.p>
 
-          <motion.h1
+          <Motion.h1
             custom={1}
             initial="hidden"
             animate="visible"
@@ -70,9 +70,9 @@ export default function HeroSection({ onExplore, onTerminal }) {
             <em className="italic" style={{ color: '#C9A84C' }}>
               Most Firms Can&apos;t Hear It.
             </em>
-          </motion.h1>
+          </Motion.h1>
 
-          <motion.p
+          <Motion.p
             custom={2}
             initial="hidden"
             animate="visible"
@@ -81,9 +81,9 @@ export default function HeroSection({ onExplore, onTerminal }) {
             style={{ color: '#6A6A62' }}
           >
             // SIGNAL-TO-NOISE RATIO: CLASSIFIED
-          </motion.p>
+          </Motion.p>
 
-          <motion.div
+          <Motion.div
             custom={3}
             initial="hidden"
             animate="visible"
@@ -111,11 +111,11 @@ export default function HeroSection({ onExplore, onTerminal }) {
             >
               VIEW RESEARCH TERMINAL
             </button>
-          </motion.div>
+          </Motion.div>
         </div>
 
         {/* Right: Dashboard Ghost */}
-        <motion.div
+        <Motion.div
           custom={4}
           initial="hidden"
           animate="visible"
@@ -197,7 +197,7 @@ export default function HeroSection({ onExplore, onTerminal }) {
               </div>
             </div>
           </GlassPanel>
-        </motion.div>
+        </Motion.div>
       </div>
 
       {/* Bottom ticker */}

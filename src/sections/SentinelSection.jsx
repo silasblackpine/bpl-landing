@@ -2,7 +2,7 @@
 // Governing spec: /home/nodeuser/documents/2026-03-28-bpl-landing-page-design.md
 
 import { useRef, useCallback } from 'react'
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 import GlassPanel from '../components/GlassPanel'
 import AmberPulse from '../components/AmberPulse'
 import useMarketFeed from '../hooks/useMarketFeed'
@@ -35,7 +35,7 @@ export default function SentinelSection() {
     >
       <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 w-full max-w-7xl mx-auto">
         {/* Left: Headline */}
-        <motion.div
+        <Motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-20%' }}
@@ -62,10 +62,10 @@ export default function SentinelSection() {
             Sentinel monitors, executes, and adapts — continuously, without fatigue,
             without emotion, without hesitation.
           </p>
-        </motion.div>
+        </Motion.div>
 
         {/* Right: Dashboard Panel */}
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-20%' }}
@@ -143,7 +143,7 @@ export default function SentinelSection() {
               </span>
             </div>
           </GlassPanel>
-        </motion.div>
+        </Motion.div>
       </div>
 
       {/* Stat bar */}

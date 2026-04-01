@@ -1,16 +1,75 @@
-# React + Vite
+# Black Pine Lab Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Immersive React + Vite landing page for Black Pine Lab, featuring:
 
-Currently, two official plugins are available:
+- **Framer Motion** section animations
+- **React Three Fiber** particle/grid canvas background
+- **GSAP + ScrollTrigger + Lenis** scroll-linked visual timeline
+- **Tailwind CSS** styling with custom typography
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech stack
 
-## React Compiler
+- React 19
+- Vite 8
+- @react-three/fiber + three
+- framer-motion
+- gsap + ScrollTrigger
+- lenis
+- tailwindcss
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Local development
 
-## Expanding the ESLint configuration
+Install dependencies:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+```
+
+Run development server:
+
+```bash
+npm run dev
+```
+
+Vite will print a local URL (usually `http://localhost:5173`).
+
+## Quality checks
+
+Run ESLint:
+
+```bash
+npm run lint
+```
+
+Build production bundle:
+
+```bash
+npm run build
+```
+
+Preview production build locally:
+
+```bash
+npm run preview
+```
+
+## Project notes
+
+### Canvas + scroll timeline
+
+- `src/canvas/*` contains particle/grid rendering and shader code.
+- `src/scroll/useScrollTimeline.js` maps scroll progress to shader uniforms and audio triggers.
+
+### Market data prototype pattern
+
+`src/hooks/useMarketFeed.js` currently uses a randomized timer-based mock feed for UI prototyping.
+
+- A production WebSocket mode is scaffolded in comments.
+- The hook is intentionally structured so mock transport can be replaced by a real `wss://` source without changing section-level rendering logic.
+
+## Scripts reference
+
+- `npm run dev` — start local dev server
+- `npm run lint` — run ESLint across the project
+- `npm run build` — build optimized production bundle
+- `npm run preview` — preview built `dist/` output

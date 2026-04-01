@@ -1,8 +1,8 @@
 // TerminalSection.jsx — Where Statistical Arbitrage Lives
 // Governing spec: /home/nodeuser/documents/2026-03-28-bpl-landing-page-design.md
 
-import { useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useRef, useEffect, useMemo } from 'react'
+import { motion as Motion } from 'framer-motion'
 import GlassPanel from '../components/GlassPanel'
 
 const fadeUp = {
@@ -37,7 +37,7 @@ const FEATURES = [
 
 export default function TerminalSection() {
   const pathRef = useRef(null)
-  const spreadPath = useRef(generateSpreadPath())
+  const spreadPath = useMemo(() => generateSpreadPath(), [])
 
   // Animate SVG path draw on viewport entry
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function TerminalSection() {
     >
       <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 w-full max-w-7xl mx-auto">
         {/* Left: Spread Chart */}
-        <motion.div
+        <Motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-20%' }}
@@ -97,7 +97,7 @@ export default function TerminalSection() {
               {/* Spread path */}
               <path
                 ref={pathRef}
-                d={spreadPath.current}
+                d={spreadPath}
                 fill="none"
                 stroke="#4A90B8"
                 strokeWidth="1.5"
@@ -118,10 +118,10 @@ export default function TerminalSection() {
               </span>
             </div>
           </GlassPanel>
-        </motion.div>
+        </Motion.div>
 
         {/* Right: Content */}
-        <motion.div
+        <Motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-20%' }}
@@ -143,7 +143,7 @@ export default function TerminalSection() {
 
           <div className="space-y-3">
             {FEATURES.map((feature, i) => (
-              <motion.p
+              <Motion.p
                 key={i}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -153,10 +153,10 @@ export default function TerminalSection() {
                 style={{ color: '#6A6A62' }}
               >
                 {feature}
-              </motion.p>
+              </Motion.p>
             ))}
           </div>
-        </motion.div>
+        </Motion.div>
       </div>
     </section>
   )
