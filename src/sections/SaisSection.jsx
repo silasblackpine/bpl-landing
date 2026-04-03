@@ -29,7 +29,15 @@ export default function SaisSection({ onApply }) {
       className="relative min-h-screen flex items-center justify-center px-6 md:px-10 lg:px-16 py-32"
       aria-label="Elite SAIS — Secure Algorithmic Infrastructure as a Service"
     >
-      <div className="max-w-5xl w-full text-center">
+      <div className="max-w-5xl w-full text-center relative z-10"
+        style={{
+          backdropFilter: 'blur(8px) brightness(0.4)',
+          WebkitBackdropFilter: 'blur(8px) brightness(0.4)',
+          background: 'rgba(8, 10, 12, 0.45)',
+          borderRadius: '16px',
+          padding: '2.5rem 2rem',
+        }}
+      >
         <Motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

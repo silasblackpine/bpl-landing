@@ -21,8 +21,8 @@ void main() {
     float nz = snoise(noiseInput + vec3(62.832));
     vec3 chaosPos = aGridPos + vec3(nx, ny, nz) * uChaos * 2.5;
 
-    // Spatial crystallization
-    float normalizedX = (aGridPos.x + 10.0) / 20.0;
+    // Spatial crystallization — matches expanded ±12 normalization in particles.vert
+    float normalizedX = (aGridPos.x + 12.0) / 24.0;
     float splitFactor = smoothstep(uSplitX - 0.05, uSplitX + 0.05, normalizedX);
     float localGrid = mix(0.0, uGridStrength, splitFactor);
 

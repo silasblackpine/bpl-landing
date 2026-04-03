@@ -69,7 +69,15 @@ export default function TerminalSection() {
       className="relative min-h-screen flex items-center px-6 md:px-10 lg:px-16 py-32"
       aria-label="Terminal — ECM and Cointegration Pairs Signal Dashboard"
     >
-      <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 w-full max-w-7xl mx-auto">
+      <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 w-full max-w-7xl mx-auto relative z-10"
+        style={{
+          backdropFilter: 'blur(8px) brightness(0.4)',
+          WebkitBackdropFilter: 'blur(8px) brightness(0.4)',
+          background: 'rgba(8, 10, 12, 0.45)',
+          borderRadius: '16px',
+          padding: '2.5rem 2rem',
+        }}
+      >
         {/* Left: Spread Chart */}
         <Motion.div
           initial="hidden"

@@ -23,7 +23,9 @@ void main() {
     vec3 chaosPos = aGridPos + vec3(nx, ny, nz) * uChaos * 2.5;
 
     // Spatial crystallization threshold
-    float normalizedX = (aGridPos.x + 10.0) / 20.0;
+    // Normalization extends ±12 units (12% beyond ±10 visible at max pullback Z=12)
+    // so left-edge particles stay above the smoothstep threshold at full crystallization
+    float normalizedX = (aGridPos.x + 12.0) / 24.0;
     float splitFactor = smoothstep(uSplitX - 0.05, uSplitX + 0.05, normalizedX);
 
     // Local grid strength
