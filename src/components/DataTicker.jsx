@@ -78,20 +78,43 @@ export default function DataTicker() {
     return () => activeTimers.forEach(clearTimeout)
   }, [sharedMVs])
 
-  // Manual rAF-based marquee for a perfectly seamless loop.
-  // The track contains two identical copies of the items.
-  // We translate from 0 to -halfWidth then wrap — since both copies
-  // share the same motion values, the reset is invisible.
+  // Ref to measure the width of a single copy of the ticker items.
+  const singleRef = useRef(null)
+  // Number of copies rendered — enough to fill the viewport + 1 spare.
+  const [copyCount, setCopyCount] = useState(3)
+
+  // Recalculate how many copies are needed on mount + resize
+  useEffect(() => {
+    function updateCopies() {
+      if (!singleRef.current) return
+      const oneWidth = singleRef.current.offsetWidth
+      if (oneWidth === 0) return
+      const needed = Math.ceil(window.innerWidth / oneWidth) + 2
+      setCopyCount((prev) => Math.max(prev, needed))
+    }
+    updateCopies()
+    window.addEventListener('resize', updateCopies)
+    return () => window.removeEventListener('resize', updateCopies)
+  }, [])
+
+  // rAF marquee: translate from 0 to -oneWidth then modulo wrap.
+  // Because every copy shares the same motion values, the wrap is invisible.
   const tick = useCallback((timestamp) => {
-    if (!trackRef.current) { rafRef.current = requestAnimationFrame(tick); return }
+    if (!trackRef.current || !singleRef.current) {
+      rafRef.current = requestAnimationFrame(tick)
+      return
+    }
     if (lastTimeRef.current === null) lastTimeRef.current = timestamp
     const delta = timestamp - lastTimeRef.current
     lastTimeRef.current = timestamp
 
     if (!paused) {
-      const halfWidth = trackRef.current.scrollWidth / 2
-      offsetRef.current = (offsetRef.current + (halfWidth / 30000) * delta) % halfWidth
-      trackRef.current.style.transform = `translateX(-${offsetRef.current}px)`
+      const oneWidth = singleRef.current.offsetWidth
+      if (oneWidth > 0) {
+        // Speed: one full copy width every 30 seconds
+        offsetRef.current = (offsetRef.current + (oneWidth / 30000) * delta) % oneWidth
+        trackRef.current.style.transform = `translateX(-${offsetRef.current}px)`
+      }
     }
     rafRef.current = requestAnimationFrame(tick)
   }, [paused])
@@ -108,6 +131,16 @@ export default function DataTicker() {
       <span className="text-secondary mx-2">&middot;</span>
     </span>
   ))
+
+  // Build copy array: first copy gets a measurement ref, rest are clones.
+  const copies = []
+  for (let c = 0; c < copyCount; c++) {
+    copies.push(
+      <span key={c} ref={c === 0 ? singleRef : undefined} className="inline-flex">
+        {renderItems(String(c))}
+      </span>
+    )
+  }
 
   return (
     <>
@@ -131,8 +164,7 @@ export default function DataTicker() {
           className="flex whitespace-nowrap py-2 px-4 font-mono text-[11px] tracking-wide"
           style={{ willChange: 'transform' }}
         >
-          {renderItems('a')}
-          {renderItems('b')}
+          {copies}
         </div>
       </div>
       <div className="sr-only">
